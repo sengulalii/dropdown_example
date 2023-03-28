@@ -20,7 +20,7 @@ class _HomePageState extends State<HomePage> {
    {"text": "bar", "value": 2, "status": false}]
 ''';
   final List<dynamic> dynamicList = jsonDecode(jsonArray);
-  List<Map<String, dynamic>> secilenDetay = [];
+  List<Map<String, dynamic>> itemSelect = [];
   String dropdownValue = "";
   @override
   Widget build(BuildContext context) {
@@ -61,7 +61,7 @@ class _HomePageState extends State<HomePage> {
               height: 70,
             ),
             Column(
-              children: secilenDetay
+              children: itemSelect
                   .map((e) => Column(
                         children: [
                           Text(
@@ -90,13 +90,13 @@ class _HomePageState extends State<HomePage> {
     if (selectedValue is String) {
       setState(() {
         dropdownValue = selectedValue;
-        deneme(selectedValue);
+        itemsChanged(selectedValue);
       });
     }
   }
 
-  deneme(String? value) {
-    secilenDetay =
+  itemsChanged(String? value) {
+    itemSelect =
         List.from(dynamicList.where((x) => x is Map && x['text'] == '$value'));
   }
 }
